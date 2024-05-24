@@ -1,0 +1,45 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract TheNumberGame {
+    address public gameOwner;
+    uint256 public targetNumber;
+    bool public isGameEnded;
+
+    event GameOver(address indexed winner, uint256 targetNumber);
+
+    constructor() {
+        gameOwner = msg.sender;
+        targetNumber = 42; // Initial target number
+        isGameEnded = false;
+    }
+
+    function makeGuess(uint256 number) public {
+        require(!isGameEnded, "Game has ended");
+
+        // Check if the guessed number matches the target number
+        if (number == targetNumber) {
+            isGameEnded = true;
+            emit GameOver(msg.sender, targetNumber);
+        }
+    }
+
+    function setTargetNumber(uint256 number) public {
+        require(msg.sender == gameOwner, "Only owner can set the target number");
+        require(!isGameEnded, "Game has already ended");
+
+        targetNumber = number;
+    }
+
+    function assertSum(uint256 a, uint256 b) public pure returns (uint256) {
+        assert(a + b <= 100);
+        return a + b;
+    }
+
+    function validateNonZero(uint256 value) public pure returns (uint256) {
+        if (value == 0) {
+            revert("Value cannot be zero");
+        }
+        return value;
+    }
+}
