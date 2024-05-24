@@ -12,6 +12,7 @@ To run this program, you can use Remix, an online Solidity IDE. To get started, 
 
 Once you are on the Remix website, create a new file by clicking on the "+" icon in the left-hand sidebar. Save the file with a .sol extension (e.g., HelloWorld.sol). Copy and paste the following code into the file:
 
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 contract TheNumberGame {
@@ -25,6 +26,7 @@ contract TheNumberGame {
         gameOwner = msg.sender;
         targetNumber = 42; // Initial target number
         isGameEnded = false;
+    
 
 
 ## Authors
@@ -32,5 +34,5 @@ contract TheNumberGame {
 Metacrafter Anthonette
 
 ## License
-
+This project is licensed under the MIT License - see the LICENSE.md file for details
     
